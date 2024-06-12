@@ -13,7 +13,6 @@ function App() {
         <Header />
         <Route path="/" component={Hompage} exact />
         <Route path="/coins/:id" component={CoinPage} />
-        <HeroBanner />
       </div>
     </BrowserRouter>
   );
