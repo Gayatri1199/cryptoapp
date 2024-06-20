@@ -49,17 +49,25 @@ const CoinsTable = () => {
             <td>Coin</td>
             <td>Price</td>
             <td>24h Change</td>
-            <td>Coin</td>
+            <td>Market Cap</td>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            {console.log("handleSearch()", handleSearch())}
-            {handleSearch().map((row) => {
-              const profit = row.price_change_percentage_24h > 0;
-              return <p>{row}</p>;
-            })}
-          </tr>
+          {console.log("handleSearch()", handleSearch())}
+          {handleSearch().map((row) => {
+            const profit = row.price_change_percentage_24h > 0;
+            return (
+              <tr>
+                <td>
+                  <img src={row.image} alt={row.name} />
+                  <span>{row.name}</span>
+                </td>
+                <td>{row.current_price}</td>
+                <td>{profit && row.price_change_percentage_24h.toFixed(2)}%</td>
+                <td>{row.market_cap}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
