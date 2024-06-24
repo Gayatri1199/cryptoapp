@@ -2,11 +2,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { CoinList } from "../config/api";
 import { CryptoState } from "./CryptoContext";
+import { useHistory } from "react-router-dom";
 
 const CoinsTable = () => {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState([]);
   const [search, setSearch] = useState();
+  let history = useHistory();
 
   const { currency } = CryptoState();
   const fetchCoins = async () => {
@@ -57,7 +59,11 @@ const CoinsTable = () => {
           {handleSearch().map((row) => {
             const profit = row.price_change_percentage_24h > 0;
             return (
-              <tr>
+              <tr
+                onClick={() => {
+                  history.push(`/coins/${row.id}`);
+                }}
+              >
                 <td>
                   <img src={row.image} alt={row.name} />
                   <span>{row.name}</span>
