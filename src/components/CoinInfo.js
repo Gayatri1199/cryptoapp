@@ -5,7 +5,7 @@ import axios from "axios";
 import { Line } from "react-chartjs-2";
 
 const CoinInfo = ({ coin }) => {
-  console.log("Coin from Coininfo", coin?.id);
+  // console.log("Coin from Coininfo", coin?.id, days, currency);
   const [historicalData, sethistoricalData] = useState();
   const [days, setDays] = useState();
   const { currency } = CryptoState();
@@ -22,6 +22,7 @@ const CoinInfo = ({ coin }) => {
   useEffect(() => {
     fetchHistoric();
   }, [currency, days]);
+  console.log("Coin from Coininfo", coin?.id, days, currency);
 
   return (
     <div className="coin-info">
@@ -42,6 +43,8 @@ const CoinInfo = ({ coin }) => {
             datasets: [
               {
                 data: historicalData.map((coin) => coin[1]),
+                label: `Price (Past ${days} Days) in ${currency}`,
+                borderColor: "#EEBC1D",
               },
             ],
           }}
