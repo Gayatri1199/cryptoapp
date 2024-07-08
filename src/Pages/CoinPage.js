@@ -17,12 +17,13 @@ const CoinPage = () => {
 
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
+    console.log("Data from CoinPage==>", data);
     setCoin(data);
   };
 
   useEffect(() => {
     fetchCoin();
-  }, []);
+  }, [id]);
 
   console.log("Coins from CoinPage===>", coin);
   return (
